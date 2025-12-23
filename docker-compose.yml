@@ -1,0 +1,26 @@
+name: stremio-addon
+
+services:
+  stremio-zooqle:
+    container_name: zooqle
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    environment:
+      NODE_ENV: production
+      STREMIO_ZOOQLE_USERNAME: your_zooqle_username
+      STREMIO_ZOOQLE_PASSWORD: your_zooqle_password
+      STREMIO_ZOOQLE_ENDPOINT: https://www.speedtorrent.com/
+      # STREMIO_ZOOQLE_ENDPOINT: https://extratorrent.xyz/
+      # STREMIO_ZOOQLE_ENDPOINT: https://ext.to/
+      # STREMIO_ZOOQLE_ENDPOINT: https://zooqle.bypassed.pm
+      STREMIO_ZOOQLE_ID: votre_id_addon
+      STREMIO_ZOOQLE_CACHE: redis://redis:6379
+
+  redis:
+    container_name: zooqle-redis
+    image: "redis:alpine"
+    # ports:
+      # - "6379:6379"
